@@ -1,1 +1,460 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নাগরিকত্ব সনদ পত্র - শ্রীপুর পৌরসভা</title>
+    <style>
+        body {
+            font-family: 'SolaimanLipi', 'AdorshoLipi', 'Noto Serif Bengali', serif, Arial, sans-serif;
+            background-color: #eef2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        /* সার্চবার এরিয়া */
+        .search-container {
+            width: 750px;
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            box-sizing: border-box;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background-color: #008a3e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .search-btn:hover {
+            background-color: #006b30;
+        }
+
+        /* প্রিন্ট বাটন */
+        .print-btn {
+            padding: 10px 20px;
+            background-color: #bd0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* সার্টিফিকেট স্টাইল */
+        .certificate {
+            width: 750px;
+            background: #fff;
+            padding: 35px 45px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .seal-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            opacity: 0.12;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-logo {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        .header-center {
+            text-align: center;
+        }
+
+        .header-center h2 {
+            margin: 0;
+            color: #008a3e;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .header-center h3 {
+            margin: 4px 0;
+            color: #bd0000;
+            font-size: 16px;
+        }
+
+        .header-center p {
+            margin: 0;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .issue-date {
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .cert-title {
+            text-align: center;
+            margin: 20px 0 15px 0;
+        }
+
+        .cert-title h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 700;
+            color: #000;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 50px;
+        }
+
+        .cert-num-container {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .boxes {
+            display: flex;
+            margin-left: 8px;
+        }
+
+        .box {
+            width: 18px;
+            height: 22px;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: -1px;
+            background: #fff;
+        }
+
+        .user-photo {
+            width: 95px;
+            height: 115px;
+            border: 1px solid #ccc;
+            object-fit: cover;
+            margin-left: auto;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .details-table td {
+            padding: 4px 0;
+            vertical-align: top;
+        }
+
+        .label-col {
+            width: 120px;
+        }
+
+        .colon-col {
+            width: 20px;
+            text-align: center;
+        }
+
+        .statement {
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .wish {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .signature-area {
+            margin-top: 65px;
+            text-align: center;
+            float: right;
+            width: 200px;
+        }
+
+        .sig-line {
+            width: 100%;
+            border-top: 1px dashed #000;
+            margin-bottom: 5px;
+        }
+
+        .sig-title {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .footer {
+            margin-top: 35px;
+            padding-top: 8px;
+            border-top: 1px dashed #ccc;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #555;
+        }
+
+        @media print {
+            .search-container {
+                display: none;
+            }
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+            .certificate {
+                border: none;
+                box-shadow: none;
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- সার্চ সেকশন -->
+<div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="সনদ নং / জন্ম নিবন্ধনের শেষ ৪ ডিজিট বা নাম লিখুন (যেমন: ১৬৬৮ বা 1668)...">
+    <button onclick="searchCitizen()" class="search-btn">অনুসন্ধান</button>
+    <button onclick="window.print()" class="print-btn">প্রিন্ট করুন</button>
+</div>
+
+<!-- সার্টিফিকেট সেকশন -->
+<div class="certificate">
+    <img src="logo.png" class="seal-watermark" alt="সীলমোহর">
+
+    <div class="content">
+        <div class="header">
+            <div>
+                <img src="logo.png" class="header-logo" alt="শ্রীপুর পৌরসভা">
+                <div class="issue-date" id="issueDate">তারিখঃ --</div>
+            </div>
+            <div class="header-center">
+                <h2>শ্রীপুর পৌরসভা কার্যালয়</h2>
+                <h3>শ্রীপুর, গাজীপুর।</h3>
+                <p>স্থাপিতঃ ২০০০ খ্রিঃ</p>
+            </div>
+            <div>
+                <img src="gov.png" class="header-logo" alt="বাংলাদেশ সরকার">
+            </div>
+        </div>
+
+        <div class="cert-title">
+            <h1>নাগরিকত্ব সনদ পত্র</h1>
+        </div>
+
+        <div class="top-info">
+            <div class="cert-num-container">
+                নাগরিকত্ব সনদপত্র নংঃ
+                <div class="boxes" id="certNoBoxes">
+                    <!-- ঘরগুলো জাভাস্ক্রিপ্ট থেকে ফিল হবে -->
+                </div>
+            </div>
+            <img src="" id="userPhoto" class="user-photo" alt="ছবি">
+        </div>
+
+        <p style="font-size: 14px; margin-bottom: 8px;">এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,</p>
+
+        <div class="details-wrap">
+            <table class="details-table">
+                <tr>
+                    <td class="label-col">নাম</td>
+                    <td class="colon-col">:</td>
+                    <td><strong id="userName">--</strong></td>
+                </tr>
+                <tr>
+                    <td class="label-col">পিতার নাম</td>
+                    <td class="colon-col">:</td>
+                    <td id="fatherName">--</td>
+                </tr>
+                <tr>
+                    <td class="label-col">মাতা</td>
+                    <td class="colon-col">:</td>
+                    <td id="motherName">--</td>
+                </tr>
+                <tr>
+                    <td class="label-col">জন্ম নিবন্ধন নং</td>
+                    <td class="colon-col">:</td>
+                    <td id="birthRegNo">--</td>
+                </tr>
+                <tr>
+                    <td class="label-col">ঠিকানা</td>
+                    <td class="colon-col">:</td>
+                    <td id="address">--</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="statement">
+            তিনি আমার পরিচিত। তিনি শ্রীপুর পৌরসভার একজন স্থায়ী বাসিন্দা ও বাংলাদেশের নাগরিক। আমার জানামতে তিনি উত্তম চরিত্রের অধিকারী ও রাষ্ট্র বিরোধী কোনো কাজে লিপ্ত নহেন।
+        </div>
+
+        <div class="wish">
+            আমি তাহার জীবনের সর্বাঙ্গীন উন্নতি কামনা করি।
+        </div>
+
+        <div class="signature-area">
+            <div class="sig-line"></div>
+            <div class="sig-title">প্রশাসক</div>
+            <div style="font-size: 12px;">শ্রীপুর পৌরসভা, গাজীপুর।</div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="footer">
+            <div>Copyright © 2022-2026 <a href="https://sreepur-pourashava.2aitltd.com" target="_blank" style="color:#008a3e; font-weight:bold; text-decoration:none;">শ্রীপুর পৌরসভা</a> . All rights reserved.</div>
+            <div>Design & Developed By <strong>2A IT LIMITED</strong></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    ];
+
+    // ইংরেজি সংখ্যাকে বাংলায় রূপান্তর করার ফাংশন
+    function convertToBanglaDigit(str) {
+        if(!str) return '';
+        const enToBn = {'0':'০', '1':'১', '2':'২', '3':'৩', '4':'৪', '5':'৫', '6':'৬', '7':'৭', '8':'৮', '9':'৯'};
+        return str.toString().replace(/[0-9]/g, match => enToBn[match]);
+    }
+
+    // ডাটা স্ক্রিনে দেখানোর ফাংশন
+    function displayCitizenData(data) {
+        document.getElementById('issueDate').innerText = "তারিখঃ " + data.date;
+        document.getElementById('userName').innerText = data.name;
+        document.getElementById('fatherName').innerText = data.father;
+        document.getElementById('motherName').innerText = data.mother;
+        document.getElementById('birthRegNo').innerText = data.birthReg;
+        document.getElementById('address').innerHTML = data.address;
+        document.getElementById('userPhoto').src = data.photo;
+
+        // সনদ নং বক্সে বসানো
+        const boxesContainer = document.getElementById('certNoBoxes');
+        boxesContainer.innerHTML = '';
+        for (let char of data.certNo) {
+            const box = document.createElement('div');
+            box.className = 'box';
+            box.innerText = char;
+            boxesContainer.appendChild(box);
+        }
+    }
+
+    // সার্চ ফাংশন
+    function searchCitizen() {
+        let rawQuery = document.getElementById('searchInput').value.trim();
+        if (!rawQuery) {
+            alert("অনুগ্রহ করে খোঁজার জন্য নাম বা নম্বর লিখুন!");
+            return;
+        }
+
+        const query = convertToBanglaDigit(rawQuery).toLowerCase();
+
+        const result = citizens.find(c => {
+            const matchesFull = c.certNo.includes(query) || 
+                                c.name.toLowerCase().includes(query) || 
+                                c.birthReg.includes(query);
+
+            const certLast4 = c.certNo.slice(-4);
+            const birthLast4 = c.birthReg.slice(-4);
+            const matchesLast4 = (query === certLast4) || (query === birthLast4);
+
+            return matchesFull || matchesLast4;
+        });
+
+        if (result) {
+            displayCitizenData(result);
+        } else {
+            alert("কোন তথ্য পাওয়া যায়নি!");
+        }
+    }
+
+    // ইউআরএল (URL) থেকে আইডি পড়ার ফাংশন
+    function loadFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchId = urlParams.get('id') || urlParams.get('cert');
+
+        if (searchId) {
+            document.getElementById('searchInput').value = searchId;
+            searchCitizen();
+        } else {
+            // লিঙ্ক না থাকলে ডিফল্টভাবে ১ম ব্যক্তির তথ্য দেখাবে
+            displayCitizenData(citizens[0]);
+        }
+    }
+
+    // এন্টার (Enter) বাটন প্রেস করলেও সার্চ হবে
+    document.getElementById('searchInput').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            searchCitizen();
+        }
+    });
+
+    // পেজ লোড হলে ইউআরএল চেক করবে
+    window.onload = loadFromUrl;
+</script>
+
+</body>
+</html>
